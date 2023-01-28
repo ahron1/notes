@@ -1,0 +1,1 @@
+info -f file.mp4 | grep IsStreamable
