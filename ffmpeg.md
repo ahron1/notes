@@ -10,7 +10,7 @@ To make mp4 streamable:
 
 ## Python
 
-Install
+Install [qtfaststart](https://github.com/danielgtaylor/qtfaststart)
     
     pip install qtfaststart
 
@@ -24,3 +24,5 @@ To overwrite the input file
 Create new output file
 
     qtfaststart INPUT OUTPUT
+
+
