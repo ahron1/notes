@@ -13,6 +13,18 @@ To make mp4 streamable:
 ### Cut section between timestamps
 
 	ffmpeg -ss 00:01:00 -to 00:02:00 -i input.mp4 -c copy output.mp4
+	
+### Merge segments
+
+Make file `mylist.txt` with list of clips:
+
+	file '/path/to/file1'
+	file '/path/to/file2'
+	file '/path/to/file3'
+	
+Concat the files:
+
+	 ffmpeg -f concat -safe 0 -i mylist.txt -c copy output.mp4
 
 ### Resize Video
 
