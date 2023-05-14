@@ -73,6 +73,14 @@ Crop 20 pixels from the top, and 20 from the bottom:
 	 
 Here the video output width and height are 640x480 and the image is placed 120 pixels from top, 0 pixels from left. 
 
+## Speed up / Slow down
+
+Speed up the video by a factor of 4:
+
+    ffmpeg -i INPUT -vf "setpts=0.25*PTS" OUTPUT
+
+The new video is the same length as the old, but the last frames repeats, and so the video needs to be clipped.
+
 ## Python
 
 Install [qtfaststart](https://github.com/danielgtaylor/qtfaststart)
