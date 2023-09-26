@@ -75,11 +75,43 @@ Here the video output width and height are 640x480 and the image is placed 120 p
 
 ## Speed up / Slow down
 
+### Drop frames
+
 Speed up the video by a factor of 4:
 
     ffmpeg -i INPUT -vf "setpts=0.25*PTS" OUTPUT
 
 The new video is the same length as the old, but the last frames repeats, and so the video needs to be clipped.
+
+### Without dropping frames
+
+Convert H264 video to raw bitstream:
+
+    ffmpeg -i INPUT -map 0:v -c:v copy -bsf:v h264_mp4toannexb raw.h264
+
+Convert H265 video to raw bitstream:
+
+    ffmpeg -i INPUT -map 0:v -c:v copy -bsf:v hevc_mp4toannexb raw.h265
+
+Generate new timestamps and mux the raw stream to a container:
+
+    ffmpeg -fflags +genpts -r 30 -i RAW.264 -c:v copy OUTPUT
+
+`r` decides the value of fps, and hence speed. To speed up the video, increase the fps to a value higher than in the original.
+
+[ffmpeg docs](https://trac.ffmpeg.org/wiki/How%20to%20speed%20up%20/%20slow%20down%20a%20video)
+
+## Audio
+
+### Remove audio from video
+
+    ffmpeg -i INPUT -c copy -an OUTPUT
+
+### Add audio to video
+
+#### Video file with no audio stream
+
+    ffmpeg -i INPUT_VIDEO -i INPUT_AUDIO -c:v copy -map 0:v -map 1:a -y OUTPUT
 
 ## Python
 
