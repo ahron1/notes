@@ -1,49 +1,39 @@
-
-## Import packages
-
-pip install pandas
-pip install seaborn
-
-import pandas as pd
-import seaborn as sns
-
-## read csv - 
-
+read csv - 
 df = pd.read_csv("csvfile")
 
 parameters - pd.read_csv("file", .....)
 
-Specify separator: sep = ",", "\t", ..
-Give names to headers: names = ["colname1", "colname2", ...]
-Get only Selected cols: usecols = ["colname1", "colname2", ...]
-Make specific col as index: index_col = 'colname'
-Make 1st row as headers: header=0/1
-Skip certain rows: skiprows = [rownum1, rownum2...]
-Import number of rows: nrows = N
-Specify encoding (default is utf-8): encoding="encodingtype"
-Skip rows with errors: error_bad_lines=False
-Change datatype of column (to save space?): dtype={"colname": datatype}
-Treat columns as date values (normally stored as object): parse_dates=["colname", ...]
-Convert col values based on function (e.g. abbreviate): def rename(name): if name == "foo": return "bar" else: return name. converters={"colname", rename}
-Treat specific values as NA: na_values=["na", "-", ...]
-Load dataset in chunks: chunksize=N
+ * Specify separator: `sep = ",", "\t", ..`
+ * Give names to headers: `names = ["colname1", "colname2", ...]`
+ * Get only Selected cols: `usecols = ["colname1", "colname2", ...]`
+ * Make specific col as index: `index_col = 'colname'`
+ * Make 1st row as headers: `header=0/1`
+ * Skip certain rows: `skiprows = [rownum1, rownum2...]`
+ * Import number of rows: `nrows = N`
+ * Speficy encoding (default is utf-8): `encoding="encodingtype"`
+ * Skip rows with errors: `error_bad_lines=False`
+ * Change datatype of column (to save space?): `dtype={"colname": datatype}`
+ * Treat columns as date values (normally stored as object): `parse_dates=["colname", ...]`
+ * Convert col values based on function (e.g. abbreviate): `def rename(name): if name == "foo": return "bar" else: return name. converters={"colname", rename}`
+ * Treat specific values as NA: `na_values=["na", "-", ...]`
+ * Load dataset in chunks: `chunksize=N`
 
 
 -------------
 ## read json - 
 
-df = pd.read_json("jsonfile")
+    df = pd.read_json("jsonfile")
 
-response = requests.get('url')
-df = pd.DataFrame(response.json()['results'])
+    response = requests.get('url')
+    df = pd.DataFrame(response.json()['results'])
 
 
 -------------
 ## dataframes
 
-get specific cols - df[["colname1", "colname2", ...]]
-append - df.append(df1, ignore_index=True)
-convert to csv - df.to_csv('csv_name')
+ * get specific cols - `df[["colname1", "colname2", ...]]`
+ * append - `df.append(df1, ignore_index=True)`
+ * convert to csv - `df.to_csv('csv_name')`
 
 kaggle datasets 
 rapidapi
@@ -51,24 +41,24 @@ rapidapi
 
 ## exploratory data analysis
 
-df = pd.read_csv("csvfile")
+    df = pd.read_csv("csvfile")
 
-df = sns.load_dataset('tips')
-titanic = pd.read_csv('train.csv')
-flights = sns.load_dataset('flights')
-iris = sns.load_dataset('iris')
+    df = sns.load_dataset('tips')
+    titanic = pd.read_csv('train.csv')
+    flights = sns.load_dataset('flights')
+    iris = sns.load_dataset('iris')
 
 ### basic
 
-df.shape
-df.info()
-df.describe()
-df.sample(10)
-df.head(5)
+    df.shape
+    df.info()
+    df.describe()
+    df.sample(10)
+    df.head(5)
 
-cols with null values - df.isnull()		df.isnull().sum()
-duplicated rows - df.duplicated()		df.duplicated().sum()
-df.corr()		df.corr()['ColName']
+cols with null values - `df.isnull()`		`df.isnull().sum()`
+duplicated rows - `df.duplicated()`		`df.duplicated().sum()`
+correlations between names - `df.corr()`		`df.corr()['ColName']`
 
 ### basic
 
@@ -88,21 +78,21 @@ e.g. percentage of survivors per passenger class (titanic dataset)
 
 #### Bivariate 
 
-    sns.scatterplot(x = dataset[col1], y = dataset[col2])
+    sns.scatterplot(dataset[col1], dataset[col2])
 
 #### Multivariate
 
 3 vars - Add color
 
-    sns.scatterplot(x = dataset[col1], y = dataset[col2], hue = dataset[col3])
+    sns.scatterplot(dataset[col1], dataset[col2], hue = dataset[col3])
 
 4 vars - add style (represet datapoint as circle vs cross)
 
-    sns.scatterplot(x = dataset[col1], y = dataset[col2], hue = dataset[col3], style = dataset[col4])
+    sns.scatterplot(dataset[col1], dataset[col2], hue = dataset[col3], style = dataset[col4])
 
 5 vars - add size (of dot based on col value)
 
-    sns.scatterplot(x = dataset[col1], y = dataset[col2], hue = dataset[col3], style = dataset[col4], size = data[col5])
+    sns.scatterplot(dataset[col1], dataset[col2], hue = dataset[col3], style = dataset[col4], size = data[col5])
 
 ### plotting - categorical and numerical
 
