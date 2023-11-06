@@ -26,6 +26,10 @@ Concat the files:
 
 	 ffmpeg -f concat -safe 0 -i mylist.txt -c copy output.mp4
 
+## Join two audio files
+
+    ffmpeg -i "concat:FILE1|FILE2" -acodec copy OUT.mp3
+
 ### Resize Video
 
 #### Specify One Dimension
@@ -103,6 +107,12 @@ Generate new timestamps and mux the raw stream to a container:
 
 ## Audio
 
+### Extract audio (as file) from video
+
+    ffmpeg -i input-video.avi -vn -acodec copy output-audio.aac
+
+    ffmpeg -i sample.avi -q:a 0 -map a sample.mp3
+
 ### Remove audio from video
 
     ffmpeg -i INPUT -c copy -an OUTPUT
@@ -112,6 +122,10 @@ Generate new timestamps and mux the raw stream to a container:
 #### Video file with no audio stream
 
     ffmpeg -i INPUT_VIDEO -i INPUT_AUDIO -c:v copy -map 0:v -map 1:a -y OUTPUT
+
+#### Merge audio with video 
+
+    ffmpeg -i video.mp4 -i audio.wav -c:v copy -c:a aac output.mp4
 
 ## Python
 
