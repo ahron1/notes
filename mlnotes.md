@@ -1,7 +1,10 @@
-read csv - 
-df = pd.read_csv("csvfile")
+## read csv - 
 
-parameters - pd.read_csv("file", .....)
+    df = pd.read_csv("csvfile")
+
+### parameters - 
+
+    pd.read_csv("file", .....)
 
  * Specify separator: `sep = ",", "\t", ..`
  * Give names to headers: `names = ["colname1", "colname2", ...]`
@@ -62,6 +65,10 @@ correlations between names - `df.corr()`		`df.corr()['ColName']`
 
 ### basic
 
+#### total of a column
+    
+    df.sum()["col1"]
+
 #### average per group
 
     df.groupby(col1).mean()[col2]
@@ -73,6 +80,32 @@ correlations between names - `df.corr()`		`df.corr()['ColName']`
 e.g. percentage of survivors per passenger class (titanic dataset)
 
     df.groupby('Pclass').mean()['Survived']
+
+#### Group by Multiple columns
+
+E.g. Number of survivors in each class per each embarking point
+
+    df.groupby(['Embarked','Pclass']).sum()["Survived"] 
+
+#### Combine group by
+
+Divide the output of two group by operations
+
+E.g. Percentage of survivors in each class for each boarding point
+
+    df.groupby(['Embarked','Pclass']).sum()["Survived"] * 100 / df.groupby(['Embarked','Pclass']).count()["Survived"] 
+
+#### lambda functions - apply 
+
+Apply a function on the previous output :
+
+For each embarking point, get the percentage of survivors w.r.t total number of survivors. E.g. 27% of the survivors were from embarking point 1. 
+
+    df.groupby('Embarked').sum()["Survived"].apply(lambda s: s / (df.sum()["Survived"]))
+
+Alternatively:
+
+    df.groupby('Embarked').apply(lambda s: s.sum()["Survived"] / (df.sum()["Survived"]))
 
 ### plotting - numerical
 
