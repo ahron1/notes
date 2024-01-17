@@ -107,6 +107,10 @@ Generate new timestamps and mux the raw stream to a container:
 
 ## Audio
 
+### Convert to mp3
+
+    ffmpeg -i INPUT.mp3 -acodec libmp3lame OUTPUT.mp3
+
 ### Extract audio (as file) from video
 
     ffmpeg -i input-video.avi -vn -acodec copy output-audio.aac
